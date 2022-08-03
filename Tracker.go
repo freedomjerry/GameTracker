@@ -10,16 +10,32 @@ import (
 //type Handler interface {
 //	ServeHttp(ResponseWriter, *Request)
 //}
-func PlayerServer(w http.ResponseWriter, r *http.Request)  {
-	player := r.URL.Path[len("/players/"):]
-
-	if player == "Pepper" {
-		fmt.Fprintf(w, "20")
-		return
-	}
-	if player == "Floyd" {
-		fmt.Fprintf(w, "10")
-		return
-	}
-
+type PlayerStore interface {
+	GetPlayerScore(name string) int
 }
+type PlayerServer struct {
+	store PlayerStore
+}
+
+type StuPlayerStore struct {
+	score map[string]int
+}
+func (p *PlayerServer) ServerHTTP(w http.ResponseWriter, r *http.Request)  {
+	player := r.URL.Path[len("/players/"):]
+	fmt.Fprint(w, p.store.GetPlayerScore(player))
+}
+
+func (s *StuPlayerStore) GetPlayerScore(name string) int {
+	score := s.score[name]
+	return score
+}
+//
+//func GetPlayerScore(name string) (score string) {
+//	if name == "Pepper"{
+//		return "20"
+//	}
+//	if name == "Floyd"{
+//		return "10"
+//	}
+//	return ""
+//}
