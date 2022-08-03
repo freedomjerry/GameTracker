@@ -14,6 +14,7 @@ func TestTracker(t *testing.T)  {
 			"Floyd": 10,
 		},
 		nil,
+		nil,
 	}
 	server := NewPlayerServer(&store)
 	t.Run("returns Pepper's score", func(t *testing.T) {

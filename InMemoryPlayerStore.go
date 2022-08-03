@@ -1,17 +1,25 @@
 package main
 
 
-func NewInMemoryPlayerStore() *InMeroryPlayerStore {
-	return &InMeroryPlayerStore{map[string]int{}}
+func NewInMemoryPlayerStore() *InMemoryPlayerStore {
+	return &InMemoryPlayerStore{map[string]int{}}
 
 }
-type InMeroryPlayerStore struct {
+
+type InMemoryPlayerStore struct {
 	store map[string]int
 }
 
-func (i *InMeroryPlayerStore) GetPlayerScore(name string) int  {
+func (i *InMemoryPlayerStore) GetLeague() League {
+	var league League
+	for name,  wins := range i.store {
+		league = append(league, Player{name, wins})
+	}
+	return league
+}
+func (i *InMemoryPlayerStore) GetPlayerScore(name string) int  {
 	return i.store[name]
 }
-func (i *InMeroryPlayerStore) RecordWin (name string)  {
+func (i *InMemoryPlayerStore) RecordWin (name string)  {
 	i.store[name]++
 }

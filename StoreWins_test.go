@@ -11,6 +11,7 @@ func TestStoreWins(t *testing.T)  {
 	store := StubPlayerStore{
 		map[string]int{},
 		nil,
+		nil,
 	}
 
 	server := NewPlayerServer(&store)
