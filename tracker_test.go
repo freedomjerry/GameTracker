@@ -19,7 +19,7 @@ func TestTracker(t *testing.T)  {
 		request := newGetScoreRequest("Pepper")
 		response := httptest.NewRecorder()
 
-		server.ServerHTTP(response, request)
+		server.ServeHTTP(response, request)
 
 		assertResponseBody(t, response.Body.String(), "20")
 
@@ -28,7 +28,7 @@ func TestTracker(t *testing.T)  {
 		request := newGetScoreRequest("Floyd")
 		response := httptest.NewRecorder()
 
-		server.ServerHTTP(response, request)
+		server.ServeHTTP(response, request)
 
 		assertResponseBody(t, response.Body.String(), "10")
 	})

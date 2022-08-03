@@ -20,7 +20,7 @@ type PlayerServer struct {
 type StuPlayerStore struct {
 	score map[string]int
 }
-func (p *PlayerServer) ServerHTTP(w http.ResponseWriter, r *http.Request)  {
+func (p *PlayerServer) ServeHTTP(w http.ResponseWriter, r *http.Request)  {
 	player := r.URL.Path[len("/players/"):]
 	fmt.Fprint(w, p.store.GetPlayerScore(player))
 }
