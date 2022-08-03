@@ -13,7 +13,7 @@ func TestStoreWins(t *testing.T)  {
 		nil,
 	}
 
-	server := &PlayerServer{&store}
+	server := NewPlayerServer(&store)
 
 	t.Run("it returns accepted on POST", func(t *testing.T) {
 		request := newPostWinRequest("Pepper")
