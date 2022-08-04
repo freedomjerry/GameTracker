@@ -16,11 +16,11 @@ type PlayerServer struct {
 	http.Handler // this is means 嵌入
 }
 
-type StubPlayerStore struct {
-	score map[string]int
-	winCalls []string
-	league League
-}
+//type StubPlayerStore struct {
+//	score map[string]int
+//	winCalls []string
+//	league League
+//}
 type Player struct {
 	Name string
 	Wins int
@@ -76,13 +76,13 @@ func (p *PlayerServer) processWin(w http.ResponseWriter, name string)  {
 	p.store.RecordWin(name)
 	w.WriteHeader(http.StatusAccepted)
 }
-func (s *StubPlayerStore) GetPlayerScore(name string) int {
-	score := s.score[name]
-	return score
-}
-func (s *StubPlayerStore) RecordWin(name string)  {
-	s.winCalls = append(s.winCalls, name)
-}
-func (s *StubPlayerStore) GetLeague() League {
-	return s.league
-}
+//func (s *StubPlayerStore) GetPlayerScore(name string) int {
+//	score := s.score[name]
+//	return score
+//}
+//func (s *StubPlayerStore) RecordWin(name string)  {
+//	s.winCalls = append(s.winCalls, name)
+//}
+//func (s *StubPlayerStore) GetLeague() League {
+//	return s.league
+//}
